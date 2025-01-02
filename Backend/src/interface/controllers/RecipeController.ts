@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { DIContainer } from "../../infrastructure/DIContainer";
+import { FindAllRecipes } from "../../application/Recipe/findAllRecipe";
 import { CreateRecipeDto } from "../dto/CreateRecipeDto";
 import { validate } from "class-validator";
 
 export class RecipeController {
-    private getAllRecipes = DIContainer.getFindAllRecipesUseCase();
+    constructor(private readonly findAllRecipesUseCase: FindAllRecipes) {}
+
 
     async create(req: Request, res: Response) {
         const dto = Object.assign(new CreateRecipeDto(), req.body);
@@ -17,7 +18,7 @@ export class RecipeController {
 
     async getAll(req: Request, res: Response) {
         try {
-            const recipes = await this.getAllRecipes.execute();
+            const recipes = await this.findAllRecipesUseCase.execute();
             res.json(recipes);
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error"});

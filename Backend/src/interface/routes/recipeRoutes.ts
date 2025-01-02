@@ -1,13 +1,10 @@
 import { Router } from "express";
-import { RecipeRepository } from "../../infrastructure/repositories/RecipeRepository";
-import { FindAllRecipes } from "../../application/Recipe/findAllRecipe";
+import { diContainer } from "../../infrastructure/DIContainer";
 import { RecipeController } from "../controllers/RecipeController";
 
 const router = Router();
 
-const recipeRepository = new RecipeRepository();
-const findAllRecipes = new FindAllRecipes(recipeRepository);
-const recipeController = new RecipeController(findAllRecipes);
+const recipeController = new RecipeController(diContainer.getFindAllRecipesUseCase());
 
 router.get("/recipes", (req, res) => recipeController.getAll(req, res));
 

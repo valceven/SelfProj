@@ -2,16 +2,23 @@ import { RecipeRepository } from "./repositories/RecipeRepository";
 import { FindAllRecipes } from "../application/Recipe/findAllRecipe";
 
 class DIContainer {
-    private static _recipeRepository = new RecipeRepository();
+    private recipeRepository: RecipeRepository;
+    private findAllRecipes: FindAllRecipes;
 
-    static getRecipeRepository() {
-        return this._recipeRepository;
+    constructor() {
+        this.recipeRepository = new RecipeRepository();
+        this.findAllRecipes = new FindAllRecipes(this.recipeRepository);
     }
 
-    static getFindAllRecipesUseCase() {
-        return new FindAllRecipes(this.getRecipeRepository());
+    getRecipeRepository() {
+        return this.recipeRepository;
+    }
+
+    getFindAllRecipesUseCase() {
+        return this.findAllRecipes;
     }
 }
 
-export { DIContainer }
+const diContainer = new DIContainer();
+export { diContainer }
 

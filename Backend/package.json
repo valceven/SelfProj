@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "descriptionz": "Ribeval SERN PROJECT",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+  "start": "ts-node src/index.ts",
+  "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "valceven",
