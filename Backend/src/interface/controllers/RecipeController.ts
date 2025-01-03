@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { FindAllRecipes } from "../../application/Recipe/findAllRecipe";
-import { CreateRecipeDto } from "../dto/CreateRecipeDto";
+import { CreateRecipeDto } from "../dto/Recipe/CreateRecipeDto";
 import { validate } from "class-validator";
 
 export class RecipeController {
