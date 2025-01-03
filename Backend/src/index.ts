@@ -1,15 +1,19 @@
 import express from "express";
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { recipeRoutes } from "./interface/routes/recipeRoutes";
 import { errorHandler } from "./interface/middleware/errorHandler";
-import * as dotenv from 'dotenv';
+import { setupSwagger } from "./interface/swagger";
 
-dotenv.config();
+
 
 const app = express();
 
 app.use(express.json());
 app.use("/api", recipeRoutes);
 app.use(errorHandler);
+setupSwagger(app);
 
 const PORT = process.env.PORT;
 

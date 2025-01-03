@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 const JWT_SECRET = process.env.JWT_SECRET || '';
 
-export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction): void => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
@@ -11,12 +11,9 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 
         jwt.verify(token, JWT_SECRET as string, (err, user) => {
             if(err) return res.sendStatus(403);
-
-            req.user = user;
-
             next();
         });
     } else {
-        return res.status(401).json({ message: 'Authorization header missing.' });
+        res.sendStatus(401);
     }
 };
