@@ -64,7 +64,6 @@ export class RecipeRepository implements IRecipeRepository {
         }
     }
     
-
     async update(recipe: Recipe): Promise<void> {
         try {
             const { error } = await supabase

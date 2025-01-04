@@ -1,32 +1,96 @@
+import supabase from "../database/supabaseClient";
 import { Ingredient } from "../../domain/entities/Ingredient";
 import { IIngredientRepository } from "../../domain/interfaces/IIngredientRepository";
 
 export class IngredientRepository implements IIngredientRepository{
     
-    private ingredients: Ingredient[] = []
-
     async findAll(): Promise<Ingredient[]> {
-        return this.ingredients;
+        try {
+            const { data, error } = await supabase
+                .from('ingredients')
+                .select('*')
+            
+            if (error) {
+                throw new Error(`Failed to fetch ingredients: ${error.message}`);
+            }
+
+            return data as Ingredient[]
+        } catch (err) {
+            console.error(err);
+            throw new Error("An unexpected error occured while fetching ingredients.");
+        }
     }
 
     async findById(id: number): Promise<Ingredient | null> {
-        return this.ingredients.find(ingredient => ingredient.ingredientId === id) || null;
+        try {
+            const { data, error } = await supabase
+                .from('ingredients')
+                .select('*')
+                .eq("ingredientId", id)
+                .single()
+
+            if (error) {
+                throw new Error(`Failed to fetch ingredient by ID: ${error.message}`);
+            }
+
+            return data as Ingredient;
+        } catch (err) {
+            console.error(err);
+            throw new Error("An unexpected error occured while fetching Ingredient by Id");
+        }
     }
 
     async create(ingredient: Ingredient): Promise<Ingredient> {
-        this.ingredients.push(ingredient);
-        return ingredient;
+        try {
+            const { data, error } = await supabase
+                .from('ingredients')
+                .insert(ingredient);
+            
+            if (error) {
+                throw new Error(`Failed to insert ingredient: ${error.message}`);
+            }
+
+            if (!data) {
+                throw new Error('No data returned from the database.');
+            }
+
+            return data[0] as Ingredient;
+        } catch (err) {
+            console.error(err);
+            throw new Error("An unexpected error occured while creating ingredient");
+        }
     }
 
     async update(ingredient: Ingredient): Promise<void> {
-        const index = this.ingredients.findIndex(i => i.ingredientId === ingredient.ingredientId);
-        if (index !== -1) {
-            this.ingredients[index] = ingredient;
+        try {
+            const { data, error } = await supabase
+                .from('ingredients')
+                .update(ingredient)
+                .eq('ingredientId', ingredient.ingredientId);
+
+            if (error) {
+                throw new Error(`Failed to update ingredient: ${error.message}`);
+            }
+        } catch (err) {
+            console.error(err);
+            throw new Error("An unexpected error occured while updating ingredient");
         }
     }
 
     async delete(id: number): Promise<void> {
-        this.ingredients = this.ingredients.filter(ingredient => ingredient.ingredientId !== id);
+        try {
+            const { data, error } = await supabase
+                .from('ingredients')
+                .delete()
+                .eq('ingredientId', id);
+            
+            if (error) {
+                throw new Error(`Failed to delete ingredient: ${error.message}`);
+            }
+        } catch (err) {
+            console.error(err);
+            throw new Error("An unexpected error occured while deleting ingredient");
+        }
     }
 
 }

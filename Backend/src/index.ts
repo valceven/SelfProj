@@ -6,8 +6,6 @@ import { recipeRoutes } from "./interface/routes/recipeRoutes";
 import { errorHandler } from "./interface/middleware/errorHandler";
 import { setupSwagger } from "./interface/swagger";
 
-
-
 const app = express();
 
 app.use(express.json());

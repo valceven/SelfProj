@@ -1,25 +1,17 @@
 import { FindAllIngredients } from "../application/Ingredient/findAllIngredients";
 import { IngredientRepository } from "./repositories/IngredientRepository";
 
-class DIContainer {
-    private ingredientsRepository: IngredientRepository;
-    private findAllIngredients: FindAllIngredients;
+export default class DIContainer {
+    private static _ingredientsRepository = new IngredientRepository();
+    private static _findAllIngredients = new FindAllIngredients(this._ingredientsRepository);
 
-    constructor() {
-        this.ingredientsRepository = new IngredientRepository();
-        this.findAllIngredients = new FindAllIngredients(this.ingredientsRepository);
+    static getIngredientsRepository() {
+        return this._ingredientsRepository;
     }
 
-    getIngredientsRepository() {
-        return this.ingredientsRepository;
-    }
-
-    getFindAllIngredients() {
-        return this.findAllIngredients;
+    static getFindAllIngredients() {
+        return this._findAllIngredients;
     }
 
 }
-
-const diContainer = new DIContainer();
-export { diContainer }
 
