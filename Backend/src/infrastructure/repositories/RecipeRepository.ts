@@ -7,7 +7,7 @@ export class RecipeRepository implements IRecipeRepository {
     async findAll(): Promise<Recipe[]> {
         try {
             const { data, error } = await supabase
-                .from('recipes')
+                .from('Recipe')
                 .select('*');
 
             if (error) {
