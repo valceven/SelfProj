@@ -7,7 +7,7 @@ export class IngredientRepository implements IIngredientRepository{
     async findAll(): Promise<Ingredient[]> {
         try {
             const { data, error } = await supabase
-                .from('ingredients')
+                .from('Ingredients')
                 .select('*')
             
             if (error) {
@@ -24,9 +24,9 @@ export class IngredientRepository implements IIngredientRepository{
     async findById(id: number): Promise<Ingredient | null> {
         try {
             const { data, error } = await supabase
-                .from('ingredients')
+                .from('Ingredients')
                 .select('*')
-                .eq("ingredientId", id)
+                .eq("ingredient_id", id)
                 .single()
 
             if (error) {

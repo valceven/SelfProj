@@ -25,9 +25,9 @@ export class RecipeRepository implements IRecipeRepository {
     async findById(id: number): Promise<Recipe | null> {
         try {
             const { data, error } = await supabase
-                .from('recipes')
+                .from('Recipe')
                 .select('*')
-                .eq('recipeId', id)
+                .eq('recipe_id', id)
                 .single();
 
             if (error) {
