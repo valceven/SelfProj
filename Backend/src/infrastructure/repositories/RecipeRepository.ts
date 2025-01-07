@@ -25,7 +25,7 @@ export class RecipeRepository implements IRecipeRepository {
     async findById(id: number): Promise<Recipe | null> {
         try {
             const { data, error } = await supabase
-                .from('Recipe')
+                .from('Recipes')
                 .select('*')
                 .eq('recipe_id', id)
                 .single();
@@ -46,8 +46,9 @@ export class RecipeRepository implements IRecipeRepository {
     async create(recipe: Recipe): Promise<Recipe> {
         try {
             const { data, error } = await supabase
-                .from('recipes')
-                .insert([recipe]);
+                .from('Recipe')
+                .insert([recipe])
+                .select('*');
     
             if (error) {
                 throw new Error(`Failed to create recipe: ${error.message}`);
@@ -84,9 +85,9 @@ export class RecipeRepository implements IRecipeRepository {
     async delete(id: number): Promise<void> {
         try {
             const { error } = await supabase
-                .from('recipes')
+                .from('Recipe')
                 .delete()
-                .eq('recipeId', id);
+                .eq('recipe_id', id);
 
             if (error) {
                 throw new Error(`Failed to delete recipe: ${error.message}`);

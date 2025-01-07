@@ -43,8 +43,9 @@ export class IngredientRepository implements IIngredientRepository{
     async create(ingredient: Ingredient): Promise<Ingredient> {
         try {
             const { data, error } = await supabase
-                .from('ingredients')
-                .insert(ingredient);
+                .from('Ingredients')
+                .insert(ingredient)
+                .select('*');
             
             if (error) {
                 throw new Error(`Failed to insert ingredient: ${error.message}`);
@@ -66,7 +67,7 @@ export class IngredientRepository implements IIngredientRepository{
             const { data, error } = await supabase
                 .from('ingredients')
                 .update(ingredient)
-                .eq('ingredientId', ingredient.ingredientId);
+                .eq('ingredient_id', ingredient.ingredientId);
 
             if (error) {
                 throw new Error(`Failed to update ingredient: ${error.message}`);
@@ -80,7 +81,7 @@ export class IngredientRepository implements IIngredientRepository{
     async delete(id: number): Promise<void> {
         try {
             const { data, error } = await supabase
-                .from('ingredients')
+                .from('Ingredients')
                 .delete()
                 .eq('ingredientId', id);
             
