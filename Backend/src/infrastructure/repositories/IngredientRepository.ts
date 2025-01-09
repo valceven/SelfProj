@@ -65,9 +65,9 @@ export class IngredientRepository implements IIngredientRepository{
     async update(id: number, ingredient: Ingredient): Promise<void> {
         try {
             const { data, error } = await supabase
-                .from('ingredients')
+                .from('Ingredients')
                 .update(ingredient)
-                .eq('ingredient_id', ingredient.ingredientId);
+                .eq('ingredient_id', id);
 
             if (error) {
                 throw new Error(`Failed to update ingredient: ${error.message}`);

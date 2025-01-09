@@ -65,12 +65,12 @@ export class RecipeRepository implements IRecipeRepository {
         }
     }
     
-    async update(recipe: Recipe): Promise<void> {
+    async update(id: number, recipe: Recipe): Promise<void> {
         try {
-            const { error } = await supabase
-                .from('recipes')
+            const { data, error } = await supabase
+                .from('Recipe')
                 .update(recipe)
-                .eq('recipeId', recipe.recipeId);
+                .eq('recipe_id', id);
 
                 if (error) {
                     throw new Error(`Failed to update recipe: ${error.message}`);

@@ -6,6 +6,8 @@ import { validate } from "class-validator";
 import { CreateRecipe } from "../../application/Recipe/createRecipe";
 import { CreateRecipeDto } from "../dto/Recipe/CreateRecipeDto";
 import { DeleteRecipe } from "../../application/Recipe/deleteRecipe";
+import { UpdateRecipe } from "../../application/Recipe/updateRecipe";
+import { UpdateRecipeDto } from "../dto/Recipe/UpdateRecipeDto";
 
 export class RecipeController {
 
@@ -13,7 +15,8 @@ export class RecipeController {
         private readonly findAllRecipesUseCase: FindAllRecipes,
         private readonly findRecipeByIdUseCase: FindRecipeById,
         private readonly createRecipeUseCase: CreateRecipe,
-        private readonly deleteRecipeUseCase: DeleteRecipe
+        private readonly deleteRecipeUseCase: DeleteRecipe,
+        private readonly updateRecipeUseCase: UpdateRecipe
     ) {}
 
     async getAll(req: Request, res: Response): Promise<void> {
@@ -84,6 +87,34 @@ export class RecipeController {
             } else {
                 res.status(500).json({ message: "An unexpected error occurred." });
             }
+        }
+    }
+
+    async updateRecipe(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            if(isNaN(Number(id))) {
+                res.status(400).json({ message: "Invalid Recipe ID" });
+                return;
+            }
+
+            console.log(id);
+
+            const updateRecipeDto = plainToInstance(UpdateRecipeDto, req.body);
+            const errors = await validate(updateRecipeDto);
+
+            console.log(updateRecipeDto);
+
+            if(errors.length > 0) {
+                res.status(400).json({ message: "Validation Failed", errors });
+                return;
+            }
+
+            await this.updateRecipeUseCase.execute(Number(id), updateRecipeDto);
+            res.status(200).json({ message: "Recipe updated successfully" });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error" });
         }
     }
 }

@@ -6,13 +6,16 @@ import { CreateIngredient } from "../../application/Ingredient/createIngredient"
 import { validate } from "class-validator";
 import { plainToInstance } from "class-transformer";
 import { DeleteIngredient } from "../../application/Ingredient/deleteIngredient";
+import { UpdateIngredient } from "../../application/Ingredient/updateIngredient";
+import { UpdateIngredientDto } from "../dto/Ingredient/UpdateIngredientDto";
 
 export class IngredientController {
     constructor(
         private readonly findAllIngredientsUseCase: FindAllIngredients,
         private readonly findIngredientByIdUseCase: FindIngredientById,
         private readonly createIngredientUseCase: CreateIngredient,
-        private readonly deleteIngredientUseCase: DeleteIngredient
+        private readonly deleteIngredientUseCase: DeleteIngredient,
+        private readonly updateIngredientUseCase: UpdateIngredient
     ) {}
 
     async getAll(req: Request, res: Response) {
@@ -83,6 +86,28 @@ export class IngredientController {
             } else {
                 res.status(500).json({ message: "An unexpected error occurred." });
             }
+        }
+    }
+
+    async updateIngredient(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            if(isNaN(Number(id))) {
+                res.status(400).json({ message: "Invalid Ingredient ID" });
+            }
+
+            const updateIngredientDto = plainToInstance(UpdateIngredientDto, req.body);
+            const errors = await validate(updateIngredientDto);
+
+            if(errors.length > 0) {
+                res.status(400).json({ message: "Data Validation Failed" });
+            }
+
+            await this.updateIngredientUseCase.execute(Number(id), updateIngredientDto);
+            res.status(200).json({ message: "Ingredient Updated Successfully" });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error" });
         }
     }
 }
