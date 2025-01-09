@@ -62,7 +62,7 @@ export class IngredientRepository implements IIngredientRepository{
         }
     }
 
-    async update(ingredient: Ingredient): Promise<void> {
+    async update(id: number, ingredient: Ingredient): Promise<void> {
         try {
             const { data, error } = await supabase
                 .from('ingredients')
@@ -83,7 +83,7 @@ export class IngredientRepository implements IIngredientRepository{
             const { data, error } = await supabase
                 .from('Ingredients')
                 .delete()
-                .eq('ingredientId', id);
+                .eq('ingredient_id', id);
             
             if (error) {
                 throw new Error(`Failed to delete ingredient: ${error.message}`);
@@ -93,5 +93,4 @@ export class IngredientRepository implements IIngredientRepository{
             throw new Error("An unexpected error occured while deleting ingredient");
         }
     }
-
 }

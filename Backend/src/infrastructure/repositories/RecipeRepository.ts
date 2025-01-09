@@ -25,7 +25,7 @@ export class RecipeRepository implements IRecipeRepository {
     async findById(id: number): Promise<Recipe | null> {
         try {
             const { data, error } = await supabase
-                .from('Recipes')
+                .from('Recipe')
                 .select('*')
                 .eq('recipe_id', id)
                 .single();
@@ -79,7 +79,6 @@ export class RecipeRepository implements IRecipeRepository {
             console.error(err);
             throw new Error("An unexpected error occured while updating the recipe.");
         }
-        
     }
 
     async delete(id: number): Promise<void> {
@@ -97,5 +96,4 @@ export class RecipeRepository implements IRecipeRepository {
             throw new Error("An unexpected error occured while deleting the recipe.");
         }
     }
-    
 }
