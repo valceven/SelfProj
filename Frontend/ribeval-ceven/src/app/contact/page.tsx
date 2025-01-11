@@ -1,11 +1,9 @@
 import React from 'react'
-import Navbar from '@/components/Navbar';
 
 const Contact = () => {
   return (
     <>
-        <Navbar/>
-        <div className='flex items-center bg-accent2'>Contact</div>
+        <div className='flex items-center justify-center bg-accent2 h-screen'>Contact</div>
     </>
   )
 }

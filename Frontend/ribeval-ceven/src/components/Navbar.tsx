@@ -5,22 +5,22 @@ const Navbar = () => {
     return (
         <>
             <nav className="flex flex-row items-center justify-between bg-transparent text-slate-800 fixed top-0 left-0 mx-auto px-48 py-12 w-full z-10">
-                <div className="flex items-center text-2xl">
-                    <Link href="/" className="hover:text-blue-500"> Ribeval </Link>
+                <div className="flex items-center text-3xl font-medium">
+                    <Link href="/" className="hover:text-blue-600"> Ribeval </Link>
                 </div>
 
                 <div className="flex">
                     <ul className="flex space-x-12 text-xl">
                         <Link href="/about">
-                            <li className="hover:text-blue-500 cursor-pointer">About</li>
+                            <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">About</li>
                         </Link>
 
                         <Link href="/contact">
-                            <li className="hover:text-blue-500 cursor-pointer">Contact</li>
+                            <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">Contact</li>
                         </Link>
                         
                         <Link href="login">
-                            <li className="hover:text-blue-500 cursor-pointer">Login</li>
+                            <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">Login</li>
                         </Link>
                         
                     </ul>

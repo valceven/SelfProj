@@ -1,13 +1,25 @@
 import React from 'react'
-import Navbar from '@/components/Navbar'
 
 const About = () => {
 
   return (
-    <>
-        <Navbar />
-        <div className='flex flex'>About</div>
-    </>
+    <div className='flex flex-col justify-center'>
+        <div className='flex bg-accent2 items-center justify-center h-screen'>
+
+          <div className='flex items-center justify-center w-1/2'>
+            <h1 className='text-4xl'>
+              Lorem
+            </h1>
+          </div>
+
+          <div className='flex items-center justify-center w-1/2'>
+            <h1 className='text-4xl'>
+              Ipsum
+            </h1>
+          </div>
+
+        </div>
+    </div>
   )
 }
 
