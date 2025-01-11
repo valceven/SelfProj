@@ -4,13 +4,13 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="flex flex-row items-center justify-between bg-transparent text-slate-800 fixed top-0 left-0 mx-auto px-48 py-12 w-full z-10">
+            <nav className="flex flex-row items-center justify-between bg-accent2 text-slate-800 px-32 py-12 w-full z-10">
                 <div className="flex items-center text-3xl font-medium">
                     <Link href="/" className="hover:text-blue-600"> Ribeval </Link>
                 </div>
 
                 <div className="flex">
-                    <ul className="flex space-x-12 text-xl">
+                    <ul className="flex space-x-24 text-lg">
                         <Link href="/about">
                             <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">About</li>
                         </Link>
