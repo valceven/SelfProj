@@ -6,7 +6,7 @@ const About = () => {
   return (
     <>
         <Navbar />
-        <div>About</div>
+        <div className='flex flex'>About</div>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 
 const playfair_display = Playfair_Display({
@@ -21,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${playfair_display.className} antialiased mx-auto min-h-screen box-border`}
-      >
+      <body className={`${playfair_display.className} antialiased mx-auto min-h-screen box-border`}>
         <Navbar />
         {children}
       </body>

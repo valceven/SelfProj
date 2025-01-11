@@ -4,7 +4,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="flex flex-row items-center justify-between bg-transparent text-slate-800 fixed mx-auto px-48 py-12 w-full z-10">
+            <nav className="flex flex-row items-center justify-between bg-transparent text-slate-800 fixed top-0 left-0 mx-auto px-48 py-12 w-full z-10">
                 <div className="flex items-center text-2xl">
                     <Link href="/" className="hover:text-blue-500"> Ribeval </Link>
                 </div>
