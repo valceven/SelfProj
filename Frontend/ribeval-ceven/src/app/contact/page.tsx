@@ -68,8 +68,27 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className='w-1/3'>
-            tintin
+          <div className='w-1/3 p-5'>
+            <div className='bg-slate-100 h-[65%] rounded-xl flex flex-col px-6 py-10'>
+              <form action="">
+                <div className='space-y-6'>
+                  <div className='flex flex-col'>
+                    <label htmlFor="">Name</label>
+                    <input type="text" name="" id="" />
+                  </div>
+
+                  <div className='flex flex-col'>
+                    <label htmlFor="">Password</label>
+                    <input type="text" name="" id="" />
+                  </div>
+
+                  <div className='flex justify-center place-items-end'>
+                    <button className='bg-accent1 py-2 px-4 rounded-lg hover:bg-opacity-80 text-white'> Submit </button>
+                  </div>
+                </div>
+ 
+              </form>
+            </div>
           </div>
 
         </div>
