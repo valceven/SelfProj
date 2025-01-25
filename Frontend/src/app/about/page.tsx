@@ -14,7 +14,6 @@ const About = () => {
 
           <div className='flex items-center justify-center w-1/2'>
             <h1 className='text-4xl'>
-              Ipsum
             </h1>
           </div>
 
