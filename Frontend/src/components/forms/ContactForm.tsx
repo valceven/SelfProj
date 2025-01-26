@@ -1,8 +1,9 @@
-'use client';
+'use client'
 
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { submitContactForm } from '@/api/contactService';
 
 interface FormValues {
   firstName: string;
@@ -27,7 +28,7 @@ const ContactForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      countryCode: '+1',
+      countryCode: '+63',
       phoneNumber: '',
       message: '',
     },
@@ -52,9 +53,9 @@ const ContactForm = () => {
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        console.log('Form values:', values);
+        const result = submitContactForm(values);
+        console.log(`Form Submitted Sucessfully ${result}`);
         resetForm();
-        alert('Form submitted successfully!');
       } catch (error) {
         console.error('Form submission error:', error);
         alert('An error occurred while submitting the form. Please try again.');

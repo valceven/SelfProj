@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactFormik from "../../components/forms/ContactForm"
+import ContactForm from "../../components/forms/ContactForm"
 
 const Contact = () => {
   return (
@@ -63,7 +63,7 @@ const Contact = () => {
 
         {/* Right Section */}
         <div className="w-full lg:w-1/3 px-4 lg:px-5">
-          <ContactFormik />
+          <ContactForm />
         </div>
       </div>
     </>
