@@ -9,6 +9,13 @@ import { errorHandler } from "./interface/middleware/errorHandler";
 import { setupSwagger } from "./interface/swagger";
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    credentials: true // If cookies or authentication are involved
+  }));
 
 app.use(express.json());
 app.use("/api", recipeRoutes);

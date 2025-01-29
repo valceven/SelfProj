@@ -21,17 +21,17 @@ export class SuggestionController {
         }
     }
 
-    async createSuggestion(req: Request, res: Response) {
+    async createSuggestion(req: Request, res: Response): Promise<any> {
         try {
             const createSuggestionDto = plainToInstance(CreateSuggestionDto, req.body);
             const errors = await validate(createSuggestionDto);
 
             if (errors.length > 0) {
-                res.status(400).json({ message: "Data Validation Failed", createSuggestionDto});
+                return res.status(400).json({ message: "Data Validation Failed", createSuggestionDto});
             }
 
             const suggestion = await this.createSuggestionUseCase.execute(createSuggestionDto);
-            res.status(201).json(suggestion);
+            return res.status(201).json(suggestion);
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error" });
         }
