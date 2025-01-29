@@ -9,8 +9,8 @@ interface FormValues {
   firstName: string;
   lastName: string;
   email: string;
-  countryCode: string;
-  phoneNumber: string;
+  //countryCode: string;
+  phone: string;
   message: string;
 }
 
@@ -28,8 +28,8 @@ const ContactForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      countryCode: '+63',
-      phoneNumber: '',
+      //countryCode: '+63',
+      phone: '',
       message: '',
     },
     validationSchema: Yup.object({
@@ -132,7 +132,7 @@ const ContactForm = () => {
           <select
             name="countryCode"
             className="px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none bg-white"
-            value={formik.values.countryCode}
+            //value={formik.values.countryCode}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
@@ -147,16 +147,16 @@ const ContactForm = () => {
             name="phoneNumber"
             placeholder="Phone number"
             className={`w-full px-4 py-2 mt-4 md:mt-0 rounded-lg border ${
-              formik.touched.phoneNumber && formik.errors.phoneNumber
+              formik.touched.phone && formik.errors.phone
                 ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                 : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
             } focus:outline-none focus:ring-2 focus:ring-opacity-50`}
-            value={formik.values.phoneNumber}
+            value={formik.values.phone}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.phoneNumber && formik.errors.phoneNumber && (
-            <p className="mt-1 text-sm text-red-500">{formik.errors.phoneNumber}</p>
+          {formik.touched.phone && formik.errors.phone && (
+            <p className="mt-1 text-sm text-red-500">{formik.errors.phone}</p>
           )}
         </div>
         <div>
