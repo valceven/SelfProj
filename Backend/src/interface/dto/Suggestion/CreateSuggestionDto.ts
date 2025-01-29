@@ -1,6 +1,6 @@
 import { IsString } from "class-validator";
 
-export class createSuggestionDto {
+export class CreateSuggestionDto {
     @IsString()
     firstName!: string;
 

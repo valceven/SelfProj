@@ -4,6 +4,7 @@ dotenv.config();
 
 import { recipeRoutes } from "./interface/routes/recipeRoutes";
 import { ingredientRoutes } from "./interface/routes/ingredientRoutes";
+import { suggestionRoutes } from "./interface/routes/suggestionRoutes";
 import { errorHandler } from "./interface/middleware/errorHandler";
 import { setupSwagger } from "./interface/swagger";
 
@@ -11,7 +12,8 @@ const app = express();
 
 app.use(express.json());
 app.use("/api", recipeRoutes);
-app.use("/api",ingredientRoutes);
+app.use("/api", ingredientRoutes);
+app.use("/api", suggestionRoutes);
 app.use(errorHandler);
 setupSwagger(app);
 
