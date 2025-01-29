@@ -9,7 +9,7 @@ interface FormValues {
   firstName: string;
   lastName: string;
   email: string;
-  //countryCode: string;
+  countryCode: string;
   phone: string;
   message: string;
 }
@@ -28,7 +28,7 @@ const ContactForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      //countryCode: '+63',
+      countryCode: '+63',
       phone: '',
       message: '',
     },
@@ -44,7 +44,7 @@ const ContactForm = () => {
         .required('Email is required'),
       countryCode: Yup.string()
         .required('Country code is required'),
-      phoneNumber: Yup.string()
+      phone: Yup.string()
         .matches(/^\d+$/, 'Phone number must only contain digits')
         .required('Phone number is required'),
       message: Yup.string()
@@ -53,8 +53,15 @@ const ContactForm = () => {
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        const result = submitContactForm(values);
+        const combinedPhone = `${formik.values.countryCode} ${formik.values.phone}`;
+        const submissionData = {
+          ...values,
+          phone: combinedPhone,
+        };
+
+        const result = await submitContactForm(submissionData);
         console.log(`Form Submitted Sucessfully ${result}`);
+        alert(`Form Submitted Sucessfully`);
         resetForm();
       } catch (error) {
         console.error('Form submission error:', error);
@@ -132,7 +139,7 @@ const ContactForm = () => {
           <select
             name="countryCode"
             className="px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none bg-white"
-            //value={formik.values.countryCode}
+            value={formik.values.countryCode}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
@@ -144,7 +151,7 @@ const ContactForm = () => {
           </select>
           <input
             type="text"
-            name="phoneNumber"
+            name="phone"
             placeholder="Phone number"
             className={`w-full px-4 py-2 mt-4 md:mt-0 rounded-lg border ${
               formik.touched.phone && formik.errors.phone
