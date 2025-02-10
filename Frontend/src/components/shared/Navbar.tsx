@@ -19,7 +19,7 @@ const Navbar = () => {
                             <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">Contact</li>
                         </Link>
                         
-                        <Link href="./auth/login">
+                        <Link href="/auth/login">
                             <li className="hover:text-blue-600 hover:underline hover:underline-offset-2 cursor-pointer">Login</li>
                         </Link>
                         
