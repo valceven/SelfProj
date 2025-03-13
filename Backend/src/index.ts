@@ -7,6 +7,7 @@ import { ingredientRoutes } from "./interface/routes/ingredientRoutes";
 import { suggestionRoutes } from "./interface/routes/suggestionRoutes";
 import { errorHandler } from "./interface/middleware/errorHandler";
 import { setupSwagger } from "./interface/swagger";
+import { authRoutes } from "./interface/routes/authRoutes";
 
 const app = express();
 const cors = require('cors');
@@ -18,6 +19,7 @@ app.use(cors({
   }));
 
 app.use(express.json());
+app.use("/api", authRoutes);
 app.use("/api", recipeRoutes);
 app.use("/api", ingredientRoutes);
 app.use("/api", suggestionRoutes);
