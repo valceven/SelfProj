@@ -3,6 +3,8 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { submitLoginForm } from '@/api/loginService';
+import { useRouter } from 'next/navigation';
 
 interface FormValues {
     username: string;
@@ -10,6 +12,8 @@ interface FormValues {
 };
 
 const LoginForm = () => {
+
+    const router = useRouter();
 
     const formik = useFormik<FormValues>({
         initialValues: {
@@ -22,11 +26,13 @@ const LoginForm = () => {
             password: Yup.string()
                 .required('Password is required')
         }),
-        onSubmit: async (values, { setSubmitting, resetForm }) => {
+        onSubmit: async (values, { setSubmitting }) => {
             try {
-                const result = await console.log("nice");
-                console.log(result); //
-                resetForm();
+                const result = await submitLoginForm(values);
+                console.log(result);
+                if (result.token.success) {
+                    router.push("/auth/login/dashboard");
+                }
             } catch (error) {
                 console.error('Form submission error: ', error);
             } finally {
