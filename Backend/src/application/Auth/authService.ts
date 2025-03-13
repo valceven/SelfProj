@@ -22,23 +22,41 @@ export class AuthService {
 
     async login(dto: LoginDTO) {
         const { username, password } = dto;
-
-        const { data, error } = await supabase
-            .from('Account')
-            .select('id, username, password')
-            .eq('username', username)
-            .single();
-
-        if (error || !data) throw new Error('Invalid username or password');
-
-        const isValidPassword = await bcrypt.compare(password, data.password);
-        if (!isValidPassword) throw new Error('Invalid username or password');
-
-        const token = jwt.sign({ id: data.id, username: data.username }, this.jwtSecret, {
-            expiresIn: '1h'
-        });
-
-        return token;
+        console.log(dto);
+    
+        try {
+            const { data, error } = await supabase
+                .from('Account')
+                .select('*')
+                .eq('username', username);
+            
+            console.log("Users found:", data?.length || 0);
+            
+            if (!data || data.length === 0) {
+                throw new Error('Invalid username or password');
+            }
+            
+            if (data.length > 1) {
+                console.error("Multiple users found with same username:", username);
+                throw new Error('Username conflict detected');
+            }
+            
+            const user = data[0];
+            
+            const isValidPassword = await bcrypt.compare(password, user.password);
+            if (!isValidPassword) {
+                throw new Error('Invalid username or password');
+            }
+            
+            const token = jwt.sign({ id: user.id, username: user.username }, this.jwtSecret, {
+                expiresIn: '1h'
+            });
+            
+            return { token };
+        } catch (error: any) {
+            console.error("Login error:", error.message);
+            throw error;
+        }
     }
 
     verifyToken(token: string) {

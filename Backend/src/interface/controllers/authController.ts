@@ -27,6 +27,7 @@ export class AuthController {
     async login(req: Request, res: Response) {
         try {
             const loginDto = plainToInstance(LoginDTO, req.body);
+            console.log(req.body);
             const errors = await validate(loginDto);
 
             if (errors.length > 0) {

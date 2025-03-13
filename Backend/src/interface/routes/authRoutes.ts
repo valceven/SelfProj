@@ -6,7 +6,6 @@ const router = Router();
 const authController = new AuthController(new AuthService());
 
 router.post("/register", function(req, res) {
-    console.log("wala bai");
     authController.register(req, res);
   });
   
