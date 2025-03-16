@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { submitLoginForm } from '@/api/loginService';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 interface FormValues {
     username: string;
@@ -12,8 +12,8 @@ interface FormValues {
 };
 
 const LoginForm = () => {
-
-    const router = useRouter();
+    const { login } = useAuth();
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const formik = useFormik<FormValues>({
         initialValues: {
@@ -26,15 +26,19 @@ const LoginForm = () => {
             password: Yup.string()
                 .required('Password is required')
         }),
-        onSubmit: async (values, { setSubmitting }) => {
+        onSubmit: async (values, { setSubmitting, resetForm }) => {
+            setErrorMessage(null);
             try {
                 const result = await submitLoginForm(values);
-                console.log(result);
                 if (result.token.success) {
-                    router.push("/auth/login/dashboard");
+                    login(result.token.token, values.username);
+                } else {
+                    setErrorMessage(result.token.message);
                 }
+                resetForm();
             } catch (error) {
                 console.error('Form submission error: ', error);
+                setErrorMessage("An unxpected error occured. Please try again.");
             } finally {
                 setSubmitting(false);
             }
@@ -86,6 +90,7 @@ const LoginForm = () => {
                                 <p className='mt-1 text-sm text-red-500'>{formik.errors.password}</p>
                             )}
                     </div>
+                    <p className='text-red-500 text-center'>{errorMessage}</p>
                     <div className='flex justify-center'>
                         <button
                             type='submit'
