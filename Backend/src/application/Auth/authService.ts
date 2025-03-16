@@ -33,7 +33,10 @@ export class AuthService {
             console.log("Users found:", data?.length || 0);
             
             if (!data || data.length === 0) {
-                throw new Error('Invalid username or password');
+                return {
+                    success: false,
+                    message: "Username not found",
+                };
             }
             
             if (data.length > 1) {
@@ -45,14 +48,22 @@ export class AuthService {
             
             const isValidPassword = await bcrypt.compare(password, user.password);
             if (!isValidPassword) {
-                throw new Error('Invalid username or password');
+                return {
+                    success: false,
+                    message: "Incorrect Password"
+                };
             }
             
             const token = jwt.sign({ id: user.id, username: user.username }, this.jwtSecret, {
-                expiresIn: '1h'
+                expiresIn: '1m'
             });
             
-            return { token };
+            return {
+                success: true,
+                token,
+                message: "Login successful"
+            };
+            
         } catch (error: any) {
             console.error("Login error:", error.message);
             throw error;
