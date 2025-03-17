@@ -31,14 +31,16 @@ const LoginForm = () => {
             try {
                 const result = await submitLoginForm(values);
                 if (result.token.success) {
-                    login(result.token.token, values.username);
+                    // Create a proper user object to pass to login
+                    const userData = { username: values.username };
+                    login(result.token.token, userData);
                 } else {
                     setErrorMessage(result.token.message);
                 }
                 resetForm();
             } catch (error) {
                 console.error('Form submission error: ', error);
-                setErrorMessage("An unxpected error occured. Please try again.");
+                setErrorMessage("An unexpected error occurred. Please try again.");
             } finally {
                 setSubmitting(false);
             }
@@ -62,7 +64,7 @@ const LoginForm = () => {
                                 formik.touched.username && formik.errors.username
                                 ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                                 : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-                            } focus:outline-none focus:ring-2 foxus:ring-opacity-50`}
+                            } focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                             value={formik.values.username}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
@@ -74,14 +76,14 @@ const LoginForm = () => {
                     <div className='space-y-3'>
                         <label htmlFor="password" className='px-1'>Password</label>
                         <input 
-                            type="text"
+                            type="password"
                             name="password"
                             placeholder='Password'
                             className={`w-full px-4 py-2 rounded-lg border ${
                                 formik.touched.password && formik.errors.password
                                 ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                                 : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-                            } focus:outline-none focus:ring-2 foxus:ring-opacity-50`}
+                            } focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                             value={formik.values.password}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
@@ -90,7 +92,7 @@ const LoginForm = () => {
                                 <p className='mt-1 text-sm text-red-500'>{formik.errors.password}</p>
                             )}
                     </div>
-                    <p className='text-red-500 text-center'>{errorMessage}</p>
+                    {errorMessage && <p className='text-red-500 text-center'>{errorMessage}</p>}
                     <div className='flex justify-center'>
                         <button
                             type='submit'
@@ -103,7 +105,6 @@ const LoginForm = () => {
                 </div>
             </form>
         </div>
-        
     </div>
   )
 }
