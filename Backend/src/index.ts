@@ -8,6 +8,8 @@ import { suggestionRoutes } from "./interface/routes/suggestionRoutes";
 import { errorHandler } from "./interface/middleware/errorHandler";
 import { setupSwagger } from "./interface/swagger";
 import { authRoutes } from "./interface/routes/authRoutes";
+import { salesRoutes } from "./interface/routes/salesRoutes";
+import { shiftSalesRoutes } from "./interface/routes/shiftSalesRoutes";
 
 const app = express();
 const cors = require('cors');
@@ -23,6 +25,9 @@ app.use("/api", authRoutes);
 app.use("/api", recipeRoutes);
 app.use("/api", ingredientRoutes);
 app.use("/api", suggestionRoutes);
+app.use("/api", salesRoutes);
+app.use("/api", shiftSalesRoutes);
+
 app.use(errorHandler);
 setupSwagger(app);
 
