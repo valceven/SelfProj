@@ -4,6 +4,7 @@ import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const DashNavbar = () => {
   const [activeLink, setActiveLink] = useState('');
@@ -12,6 +13,7 @@ const DashNavbar = () => {
     { href: '/auth/login/dashboard/payroll', icon: <PriceChangeOutlinedIcon />, label: 'Payroll' },
     { href: '/auth/login/dashboard/inventory', icon: <Inventory2OutlinedIcon />, label: 'Inventory' },
     { href: '/auth/login/dashboard/recipes', icon: <MenuBookOutlinedIcon />, label: 'Recipes' },
+    { href: '/auth/login/dashboard/sales', icon: <AttachMoneyIcon/>, label:'Sales'}
   ];
 
   return (
