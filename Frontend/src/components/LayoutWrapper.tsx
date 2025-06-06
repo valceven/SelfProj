@@ -1,9 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
-import DashNavbar from "@/components/shared/DashNavbar";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import DashNavbar from "@/components/layout/DashNavbar";
 
 const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathName = usePathname();
