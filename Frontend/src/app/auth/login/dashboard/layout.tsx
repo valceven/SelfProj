@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const router = useRouter();
 
     useEffect(() => {
-        if (!isLoading && !user) {
+        if (!isLoading) {
             router.push("auth/login");
         }
     }, [user, isLoading, router]);
@@ -18,9 +18,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         return <div className="flex items-center justify-center h-screen">Loading...</div>
     }
 
-    if (!user) {
-        return null;
-    }
+    // if (!user) {
+    //     return null;
+    // }
 
     return <>{children}</>
 }

@@ -74,7 +74,7 @@ const Dashboard = () => {
                     {quickStats.map((stat, index) => {
                         const Icon = stat.icon;
                         return (
-                            <Card key={index} className="border-0 bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
+                            <Card key={index} className="bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
                                 <CardHeader className="pb-2">
                                     <div className="flex items-center justify-between">
                                         <CardDescription className="text-sm font-medium">

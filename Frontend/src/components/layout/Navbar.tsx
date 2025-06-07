@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/40"
+      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/60"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
