@@ -5,8 +5,8 @@
 @layer base {
   :root {
     /* Light mode - Your cream/teal theme */
-    --background: 34 100% 97%; /* #fff9f0 converted to HSL */
-    --foreground: 215 16% 11%; /* #1a1b1e converted to HSL */
+    --background: 34 100% 97%; /* #fff9f0 */
+    --foreground: 215 16% 11%; /* #1a1b1e */
     --card: 0 0% 100%; /* #ffffff */
     --card-foreground: 215 16% 11%; /* #1a1b1e */
     --popover: 0 0% 100%; /* #ffffff */
@@ -24,12 +24,14 @@
     --border: 20 6% 90%; /* #e7e5e4 */
     --input: 20 6% 90%; /* #e7e5e4 */
     --ring: 180 45% 51%; /* #47bdbd - your teal */
-    --chart-1: 180 45% 51%; /* #47bdbd */
-    --chart-2: 21 95% 53%; /* #f97316 */
-    --chart-3: 142 76% 36%; /* #22c55e */
-    --chart-4: 217 91% 60%; /* #3b82f6 */
-    --chart-5: 262 83% 58%; /* #a855f7 */
     --radius: 0.5rem;
+    
+    /* Chart colors - OKLCH versions of your brand colors */
+    --chart-1: oklch(0.69 0.14 180); /* Your teal #47bdbd */
+    --chart-2: oklch(0.68 0.17 41); /* Your orange #f97316 */
+    --chart-3: oklch(0.72 0.15 142); /* Complementary green */
+    --chart-4: oklch(0.65 0.15 250); /* Complementary blue */
+    --chart-5: oklch(0.63 0.13 310); /* Complementary purple */
   }
 
   .dark {
@@ -53,11 +55,13 @@
     --border: 0 0% 15%; /* Dark border */
     --input: 0 0% 15%; /* Dark input */
     --ring: 180 45% 51%; /* Keep your teal */
-    --chart-1: 180 45% 51%; /* #47bdbd */
-    --chart-2: 21 95% 53%; /* #f97316 */
-    --chart-3: 142 76% 36%; /* #22c55e */
-    --chart-4: 217 91% 60%; /* #3b82f6 */
-    --chart-5: 262 83% 58%; /* #a855f7 */
+    
+    /* Chart colors - Same OKLCH values work well in dark mode */
+    --chart-1: oklch(0.69 0.14 180); /* Your teal */
+    --chart-2: oklch(0.68 0.17 41); /* Your orange */
+    --chart-3: oklch(0.72 0.15 142); /* Green */
+    --chart-4: oklch(0.65 0.15 250); /* Blue */
+    --chart-5: oklch(0.63 0.13 310); /* Purple */
   }
 
   .font-playfair {
@@ -74,7 +78,7 @@
   }
 }
 
-/* Optional: Smooth transitions for theme switching */
+/* Smooth transitions for theme switching */
 * {
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }

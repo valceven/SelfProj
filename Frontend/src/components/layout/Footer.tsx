@@ -1,10 +1,12 @@
 "use client"
 
+import { Separator } from "@radix-ui/react-dropdown-menu"
 import { motion } from "framer-motion"
 
 const Footer = () => {
   return (
-    <footer className="bg-muted/30 border-t border-border/40">
+    <footer className="bg-muted/80 border-t border-border/40">
+      <Separator className="bg-brand-teal-500/50 h-px" />
       <div className="container mx-auto px-4 py-12">
         <motion.div
           className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0"

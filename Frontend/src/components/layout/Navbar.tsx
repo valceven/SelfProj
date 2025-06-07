@@ -39,7 +39,6 @@ const Navbar = () => {
               {[
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
-                { href: "/pricing", label: "Pricing" },
               ].map((item, index) => (
                 <motion.div
                   key={item.href}
@@ -49,10 +48,10 @@ const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className="text-foreground hover:text-primary-500 transition-colors duration-200 font-medium relative group"
+                    className="text-foreground hover:text-brand-teal-500 transition-colors duration-200 font-medium relative group"
                   >
                     {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-200 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal-500 transition-all duration-200 group-hover:w-full" />
                   </Link>
                 </motion.div>
               ))}
@@ -64,7 +63,7 @@ const Navbar = () => {
             className="hidden md:flex items-center space-x-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.6  }}
           >
             <ThemeToggle />
             <Link href="/auth/login">

@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Users, Package, DollarSign } from "lucide-react";
+import { PhilippinePeso } from "lucide-react";
+import { DashBarChart } from "@/components/charts/dash-bar-chart";
 
 const Dashboard = () => {
     const { user, isLoading } = useAuth();
@@ -35,55 +36,41 @@ const Dashboard = () => {
 
     const quickStats = [
         {
-            title: "Today's Sales",
+            title: "Inoburan Revenue",
             value: "₱12,450",
             change: "+8.2%",
-            icon: DollarSign,
+            icon: PhilippinePeso,
             positive: true
         },
         {
-            title: "Active Orders",
-            value: "24",
-            change: "+12",
-            icon: Package,
+            title: "Pitalo Revenue",
+            value: "₱5,490",
+            change: "+7.7%",
+            icon: PhilippinePeso,
             positive: true
         },
-        {
-            title: "Staff Online",
-            value: "8/12",
-            change: "2 on break",
-            icon: Users,
-            positive: false
-        },
-        {
-            title: "Monthly Growth",
-            value: "23.5%",
-            change: "+2.1%",
-            icon: TrendingUp,
-            positive: true
-        }
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/70 p-6">
             <div className="max-w-7xl mx-auto space-y-8">
                 {/* Welcome Header */}
                 <div className="space-y-2">
                     <div className="flex items-center gap-3">
                         <h1 className="text-3xl font-bold text-foreground">
-                            Welcome back, {user.username}!
+                            Welcome aboard, {user.username}
                         </h1>
                         <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                             Admin
                         </Badge>
                     </div>
                     <p className="text-muted-foreground">
-                        Here&apos;s what&apos;s happening at Ribeval Ceven Bakeshop today
+                        Here&apos;s what&apos;s happening at Ribeval Bakeshop!
                     </p>
                 </div>
 
                 {/* Quick Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                     {quickStats.map((stat, index) => {
                         const Icon = stat.icon;
                         return (
@@ -120,34 +107,20 @@ const Dashboard = () => {
                 {/* Quick Actions */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle>Quick Actions</CardTitle>
+                        <CardTitle>Analytical Dashboard</CardTitle>
                         <CardDescription>
-                            Get started with common bakery management tasks
+                            What a nice day to manage your bakeshop!
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {[
-                                { label: "Add New Recipe", color: "bg-primary/10 text-primary hover:bg-primary/20" },
-                                { label: "Update Inventory", color: "bg-secondary/10 text-secondary hover:bg-secondary/20" },
-                                { label: "Process Payroll", color: "bg-primary/10 text-primary hover:bg-primary/20" },
-                                { label: "View Reports", color: "bg-secondary/10 text-secondary hover:bg-secondary/20" }
-                            ].map((action, index) => (
-                                <button
-                                    key={index}
-                                    className={`p-4 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${action.color}`}
-                                >
-                                    {action.label}
-                                </button>
-                            ))}
-                        </div>
+                        <DashBarChart />
                     </CardContent>
                 </Card>
 
                 {/* Recent Activity */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle>Recent Activity</CardTitle>
+                        <CardTitle>Important Notifications</CardTitle>
                         <CardDescription>
                             Latest updates from your bakeshop
                         </CardDescription>
