@@ -78,7 +78,7 @@ const Dashboard = () => {
                         </Badge>
                     </div>
                     <p className="text-muted-foreground">
-                        Here's what's happening at Ribeval Ceven Bakeshop today
+                        Here&apos;s what&apos;s happening at Ribeval Ceven Bakeshop today
                     </p>
                 </div>
 

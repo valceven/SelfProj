@@ -102,7 +102,7 @@ const DashNavbar = () => {
 
       {/* Navigation Links */}
       <div className="flex flex-col flex-grow px-6 py-8 space-y-3">
-        {navItems.map((item, index) => {
+        {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
           
