@@ -1,38 +1,44 @@
 "use client";
 
-import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// import { useAuth } from "@/context/AuthContext";
+// import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PhilippinePeso } from "lucide-react";
 import { DashBarChart } from "@/components/charts/dash-bar-chart";
 
 const Dashboard = () => {
-    const { user, isLoading } = useAuth();
-    const router = useRouter();
+   // const { user, isLoading } = useAuth();
+    //const router = useRouter();
 
-    useEffect(() => {
-        console.log(`USER NI: ${user}`);
-        if (!isLoading && !user) {
-            router.push("/auth/login");
-        }
-    }, [user, router, isLoading]);
-
-    if (isLoading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-8">
-                <div className="text-center space-y-4">
-                    <div className="animate-pulse w-12 h-12 bg-primary/20 rounded-lg mx-auto"></div>
-                    <div className="text-xl font-medium text-muted-foreground">Loading dashboard...</div>
-                </div>
-            </div>
-        );
+    const user = {
+        username: "Admin",
+        role: "admin",
+        email: "ribevalceven@gmail.com"
     }
 
-    if (!user) {
-        return null;
-    }
+    // useEffect(() => {
+    //     console.log(`USER NI: ${user}`);
+    //     if (!isLoading && !user) {
+    //         router.push("/auth/login");
+    //     }
+    // }, [user, router, isLoading]);
+
+    // if (isLoading) {
+    //     return (
+    //         <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex items-center justify-center p-8">
+    //             <div className="text-center space-y-4">
+    //                 <div className="animate-pulse w-12 h-12 bg-primary/20 rounded-lg mx-auto"></div>
+    //                 <div className="text-xl font-medium text-muted-foreground">Loading dashboard...</div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
+
+    // if (!user) {
+    //     return null;
+    // }
 
     const quickStats = [
         {
