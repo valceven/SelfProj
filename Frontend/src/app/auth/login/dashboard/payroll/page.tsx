@@ -33,10 +33,10 @@ const employeeStats = [
 
 const page = () => {
     return (
-        <div className='min-h-screen bg-gradient-to-br from-background via-background to-muted/70 p-6'>
+        <div className='min-h-screen bg-background p-6'>
             <div className='max-w-7xl mx-auto space-y-8'>
                 {/* Payroll Management*/}
-                <div className='space-y-2'>
+                <div>
                     <h1 className='text-3xl font-bold text-foreground'>Payroll Management</h1>
                     <p className='text-muted-foreground'>Manage employee payroll efficiently.</p>   
                 </div>
