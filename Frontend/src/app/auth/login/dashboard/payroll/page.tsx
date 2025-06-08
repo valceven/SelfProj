@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import { Badge } from "@/components/ui/badge";
 import { 
     PersonStandingIcon, 
@@ -7,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PayrollLineChart } from '@/components/charts/pay-line-chart';
+import { employeesData } from '@/lib/employeesData';
 
 const employeeStats = [
     {
@@ -26,45 +28,6 @@ const employeeStats = [
         value: "+12.8%",
         extra: "No changes",
         icon: PersonStandingIcon,
-    }
-]
-
-const employeesData = [
-    {
-        name: "Mary Anne Bastismo",
-        position: "Cashier",
-        salary: "₱10,000",
-        status: "Active",
-    },
-    {
-        name: "Junrey Semilla",
-        position: "Baker",
-        salary: "₱15,000",
-        status: "Active",
-    },
-    {
-        name: "Trelly Semilla",
-        position: "Secretary",
-        salary: "₱12,000",
-        status: "Active",
-    },
-    {
-        name: "Allan Patolombon",
-        position: "Baker",
-        salary: "₱15,000",
-        status: "Active",
-    },
-    {
-        name: "John Doe",
-        position: "Manager",
-        salary: "₱20,000",
-        status: "Inactive",
-    },
-    {
-        name: "Jane Smith",
-        position: "Supervisor",
-        salary: "₱18,000",
-        status: "Active",
     }
 ];
 
@@ -112,8 +75,8 @@ const page = () => {
                 {/* Salary Growth Chart */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle className='text-lg font-semibold'>Salary Growth Trend</CardTitle>
-                        <CardDescription className='text-sm text-muted-foreground'>
+                        <CardTitle>Salary Growth Trend</CardTitle>
+                        <CardDescription>
                             Average salary progression over the last 6 months.
                         </CardDescription>
                     </CardHeader>
@@ -133,28 +96,32 @@ const page = () => {
                     <CardContent className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
                         {employeesData.map((employee, index) => {
                             return (
-                                <Card key={index} className='bg-background/15 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer space-y-2'>
-                                    <CardHeader>
-                                        <CardTitle className='flex items-center justify-between'>
-                                            <div className='flex flex-col space-y-1'>
-                                                <div>
-                                                    {employee.name}
+                                <Link key={index} href={`payroll/employees/${index}`} className='no-underline' prefetch={true}>
+                                    <Card className='bg-background/15 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer space-y-2'>
+                                        <CardHeader>
+                                            <CardTitle className='flex items-center justify-between'>
+                                                <div className='flex flex-col space-y-1'>
+                                                    <div>
+                                                        {employee.name}
+                                                    </div>
+                                                    <div className='text-sm text-muted-foreground'>
+                                                        {employee.position}
+                                                    </div>
                                                 </div>
-                                                <div className='text-sm text-muted-foreground'>
-                                                    {employee.position}
+                                                <div className='flex items-center space-x-2'>
+                                                    <Badge variant={employee.status === 'Active' ? 'default' : 'destructive'}>
+                                                        {employee.status}
+                                                    </Badge>
+                                                    <ChevronRightIcon className='h-4 w-4 text-muted-foreground' />
                                                 </div>
-                                            </div>
-                                            <div className='flex items-center space-x-2'>
-                                                <Badge className='ml-2'>{employee.status}</Badge>
-                                                <ChevronRightIcon className='h-4 w-4 text-muted-foreground' />
-                                            </div>
-                                        </CardTitle>
-                                        <CardDescription className='text-lg flex flex-col'>
-                                            <span className='text-md font-bold text-foreground'>{employee.salary}</span>
-                                            <span className='text-sm text-muted-foreground'> Monthly Salary</span>
-                                        </CardDescription>
-                                    </CardHeader>
-                                </Card>
+                                            </CardTitle>
+                                            <CardDescription className='text-lg flex flex-col'>
+                                                <span className='text-md font-bold text-foreground'>{employee.salary}</span>
+                                                <span className='text-sm text-muted-foreground'> Monthly Salary</span>
+                                            </CardDescription>
+                                        </CardHeader>
+                                    </Card>
+                                </Link>
                             );
                         })}
                     </CardContent>
