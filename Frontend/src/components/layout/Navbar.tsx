@@ -67,7 +67,7 @@ const Navbar = () => {
           >
             <ThemeToggle />
             <Link href="/auth/login">
-              <Button className="font-medium bg-primary hover:bg-brand-teal-600">
+              <Button>
                 Login
               </Button>
             </Link>

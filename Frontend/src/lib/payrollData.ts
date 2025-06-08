@@ -1,0 +1,38 @@
+export const payrollData = [
+  {
+    month: "December 2024",
+    baseRate: "₱32,000",
+    incentives: "₱2,400",
+    deductions: "₱5,000",
+    tax: "₱1,200",
+    netPay: "₱38,200",
+    status: "Pending",
+  },
+  {
+    month: "November 2024",
+    baseRate: "₱32,000",
+    incentives: "₱1,800",
+    deductions: "₱0",
+    tax: "₱1,200",
+    netPay: "₱32,600",
+    status: "Paid",
+  },
+  {
+    month: "October 2024",
+    baseRate: "₱32,000",
+    incentives: "₱2,200",
+    deductions: "₱2,000",
+    tax: "₱1,200",
+    netPay: "₱35,000",
+    status: "Paid",
+  },
+  {
+    month: "September 2024",
+    baseRate: "₱32,000",
+    incentives: "₱1,600",
+    deductions: "₱0",
+    tax: "₱1,200",
+    netPay: "₱32,400",
+    status: "Paid",
+  },
+];
