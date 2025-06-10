@@ -21,11 +21,17 @@ import {
 } from "@/components/ui/pagination";
 
 import { ingredientsData } from "@/lib/ingredientsData";
+import { Ingredient } from "../modals/ing-update-modal";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpDown } from "lucide-react";
+import { Button } from "../ui/button";
+import { ArrowUpDown, Edit } from "lucide-react";
+import { IngredientModal } from "../modals/ing-update-modal";
 
 export const IngredientsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [, setIngredients] = useState<Ingredient[]>(ingredientsData)
+  const [selectedIngredient, setSelectedIngredient] = useState<Ingredient | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const itemsPerPage = 5;
 
   const totalItems = ingredientsData.length;
@@ -36,6 +42,23 @@ export const IngredientsTable = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  }
+
+  const handleEdit = (ingredient: Ingredient) => {
+    setSelectedIngredient(ingredient)
+    setIsModalOpen(true)
+  }
+
+  const handleUpdate = (updatedIngredient: Ingredient) => {
+    setIngredients((prev) => prev.map((ing) => (ing.id === updatedIngredient.id ? updatedIngredient : ing)))
+
+    // Optional: Show success message
+    console.log("Ingredient updated successfully:", updatedIngredient)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedIngredient(null)
   }
 
   const getVisiblePages = () => {
@@ -75,20 +98,21 @@ export const IngredientsTable = () => {
               <TableHead>Unit Price</TableHead>
               <TableHead>Value</TableHead>
               <TableHead>Reorder Level</TableHead>
-              <TableHead className="text-right">Status</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="min-h-[320px]"> {/* Fixed body height */}
             {currentData.map((ingredient) => (
               <TableRow key={ingredient.id} className="border-b border-border/40">
-                <TableCell className="font-medium py-4">{ingredient.name}</TableCell>
-                <TableCell className="py-4">{ingredient.category}</TableCell>
-                <TableCell className="py-4">{ingredient.currentQuantity} {ingredient.unit}</TableCell>
-                <TableCell className="py-4">{ingredient.initialQuantity} {ingredient.unit}</TableCell>
-                <TableCell className="py-4">₱{ingredient.unitPrice}</TableCell>
-                <TableCell className="py-4">₱{calculateValue(ingredient.currentQuantity, ingredient.unitPrice)}</TableCell>
-                <TableCell className="py-4">{ingredient.reorderLevel} {ingredient.unit}</TableCell>
-                <TableCell className="text-right py-4">
+                <TableCell>{ingredient.name}</TableCell>
+                <TableCell>{ingredient.category}</TableCell>
+                <TableCell>{ingredient.currentQuantity} {ingredient.unit}</TableCell>
+                <TableCell>{ingredient.initialQuantity} {ingredient.unit}</TableCell>
+                <TableCell>₱{ingredient.unitPrice}</TableCell>
+                <TableCell>₱{calculateValue(ingredient.currentQuantity, ingredient.unitPrice)}</TableCell>
+                <TableCell>{ingredient.reorderLevel} {ingredient.unit}</TableCell>
+                <TableCell>
                   <Badge
                     className={`${
                       getStatus(ingredient.currentQuantity, ingredient.reorderLevel) === "Low Stock"
@@ -98,6 +122,11 @@ export const IngredientsTable = () => {
                   >
                     {getStatus(ingredient.currentQuantity, ingredient.reorderLevel)}
                   </Badge>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Button variant="secondary" onClick={() => handleEdit(ingredient)} size="sm">
+                    <Edit />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -164,6 +193,12 @@ export const IngredientsTable = () => {
           </PaginationContent>
         </Pagination>
       </div>
+
+      <IngredientModal
+        ingredient={selectedIngredient}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleUpdate} mode={"update"} />
     </>
   );
 };
