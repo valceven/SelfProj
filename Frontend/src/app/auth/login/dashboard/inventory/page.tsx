@@ -92,7 +92,7 @@ const page = () => {
                                     className='pl-8 w-[200px] sm:w-[300px]'
                                     />
                                 </div>
-                                <Button variant="secondary" size="icon">
+                                <Button size="icon">
                                     <Filter className='h-4 w-4' />
                                     <span className='sr-only'>Filter</span>
                                 </Button>
