@@ -9,6 +9,7 @@ import {
 import { CardContent, CardDescription, CardTitle, Card, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { IngredientsTable } from '@/components/tables/ing-table';
 
 const ingredientStats = [
     {
@@ -53,7 +54,7 @@ const page = () => {
                                             {ingredient.title}
                                         </CardDescription>
                                         <div className='w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center'>
-                                            <Icon className='h-4 w-4 text-primary' />
+                                            <Icon className={`h-4 w-4 ${ingredient.icon === TriangleAlert ? 'text-red-500' : 'text-primary'}`}/>
                                         </div>
                                     </div>                                    
                                 </CardHeader>
@@ -99,7 +100,7 @@ const page = () => {
                         </div>
                     </CardHeader>   
                     <CardContent>
-                        {/* card content here */}
+                        <IngredientsTable />
                     </CardContent>
                 </Card>
 
