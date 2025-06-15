@@ -34,12 +34,12 @@ const ingredientStats = [
 
 const page = () => {
     return (
-        <div className='min-h-screen bg-background p-6'>
+        <div className="min-h-screen bg-background p-4 md:p-6 pt-20 md:pt-6">
             <div className='max-w-7xl mx-auto space-y-8'>
                 {/* Inventory Management */}
                 <div>
-                    <h1 className='text-3xl font-bold text-foreground'>Inventory Management</h1>
-                    <p className='text-muted-foreground'>Manage and track inventory supplies</p>
+                    <h1 className='text-lg sm:text-xl md:text-2xl font-bold text-foreground'>Inventory Management</h1>
+                    <p className='text-xs sm:text-sm md:text-base text-muted-foreground'>Manage and track inventory supplies</p>
                 </div>
 
                 {/* Total Ingredients */}
@@ -60,10 +60,10 @@ const page = () => {
                                 </CardHeader>
                                 <CardContent>
                                     <div className='space-y-2'>
-                                        <CardTitle className='text-2xl font-bold'>
+                                        <CardTitle className='text-xl sm:text-2xl font-bold'>
                                             {ingredient.value}
                                         </CardTitle>
-                                        <span className='text-sm text-primary'>
+                                        <span className='text-xs sm:text-sm text-primary'>
                                             {ingredient.extra}
                                         </span>
                                     </div>
@@ -78,7 +78,7 @@ const page = () => {
                 {/* Inventory Items */}
                 <Card className='border-0 bg-card/50 backdrop-blur-sm'>
                     <CardHeader>
-                        <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4'>
+                        <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4'>
                             <div>
                                 <CardTitle>Inventory Items</CardTitle>
                                 <CardDescription>Manage your ingredients and supplies</CardDescription>
@@ -89,7 +89,7 @@ const page = () => {
                                     <Input
                                     type='search'
                                     placeholder='Search Ingredients...'
-                                    className='pl-8 w-[200px] sm:w-[300px]'
+                                    className='pl-8 w-full sm:w-[250px] md:w-[300px]'
                                     />
                                 </div>
                                 <Button size="icon">

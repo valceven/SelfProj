@@ -58,19 +58,19 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/70 p-6">
+        <div className="min-h-screen bg-background p-4 md:p-6 pt-20 md:pt-6">
             <div className="max-w-7xl mx-auto space-y-8">
                 {/* Welcome Header */}
                 <div className="space-y-2">
                     <div className="flex items-center gap-3">
-                        <h1 className="text-3xl font-bold text-foreground">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                             Welcome aboard, {user.username}
                         </h1>
                         <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
                             Admin
                         </Badge>
                     </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-sm sm:text-base text-muted-foreground">
                         Here&apos;s what&apos;s happening at Ribeval Bakeshop!
                     </p>
                 </div>
@@ -93,14 +93,13 @@ const Dashboard = () => {
                                 </CardHeader>
                                 <CardContent>
                                     <div className="space-y-1">
-                                        <CardTitle className="text-2xl font-bold">
+                                        <CardTitle className="text-xl sm:text-2xl font-bold">
                                             {stat.value}
                                         </CardTitle>
-                                        <p className={`text-sm ${
-                                            stat.positive 
-                                                ? 'text-primary' 
-                                                : 'text-muted-foreground'
-                                        }`}>
+                                        <p className={
+                                            `text-xs sm:text-sm ${stat.positive ? 
+                                            'text-primary' : 'text-muted-foreground'}`
+                                            }>
                                             {stat.change}
                                         </p>
                                     </div>
@@ -113,7 +112,7 @@ const Dashboard = () => {
                 {/* Quick Actions */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle>Analytical Dashboard</CardTitle>
+                        <CardTitle className="text-lg sm:text-xl font-bold">Analytical Dashboard</CardTitle>
                         <CardDescription>
                             What a nice day to manage your bakeshop!
                         </CardDescription>
@@ -126,7 +125,9 @@ const Dashboard = () => {
                 {/* Recent Activity */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle>Important Notifications</CardTitle>
+                        <CardTitle className="text-lg sm:text-xl font-bold">
+                            Recent Activity
+                        </CardTitle>
                         <CardDescription>
                             Latest updates from your bakeshop
                         </CardDescription>
