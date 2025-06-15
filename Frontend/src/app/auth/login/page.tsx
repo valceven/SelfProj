@@ -7,9 +7,6 @@ const Login = () => {
     
     <div className='flex items-center justify-center bg-accent2 h-screen'>
       <LoginForm />
-      <p>
-        Nice
-      </p>
     </div>
   );
 };

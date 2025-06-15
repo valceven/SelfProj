@@ -33,12 +33,12 @@ const employeeStats = [
 
 const page = () => {
     return (
-        <div className='min-h-screen bg-background p-6'>
+        <div className="min-h-screen bg-background p-4 md:p-6 pt-20 md:pt-6">
             <div className='max-w-7xl mx-auto space-y-8'>
                 {/* Payroll Management*/}
                 <div>
-                    <h1 className='text-3xl font-bold text-foreground'>Payroll Management</h1>
-                    <p className='text-muted-foreground'>Manage employee payroll efficiently.</p>   
+                    <h1 className='text-lg md:text-2xl font-bold text-foreground'>Payroll Management</h1>
+                    <p className='text-xs md:text-base text-muted-foreground'>Manage employee payroll efficiently.</p>   
                 </div>
 
                 {/* Total Details */}
@@ -49,9 +49,9 @@ const page = () => {
                             <Card key={index} className='bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300 border-0'>
                                 <CardHeader className='pb-2'>
                                     <div className='flex items-center justify-between'>
-                                        <CardDescription className='text-sm font-medium'>
+                                        <CardTitle className='text-xs md:text-sm font-bold'>
                                             {stat.title}
-                                        </CardDescription>
+                                        </CardTitle>
                                         <div className='w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center'>
                                             <Icon className='h-4 w-4 text-primary' />
                                         </div>
@@ -59,10 +59,10 @@ const page = () => {
                                 </CardHeader>
                                 <CardContent>
                                     <div className='space-y-2'>
-                                        <CardTitle className="text-2xl font-bold">
+                                        <CardTitle className="text-lg md:text-2xl font-bold">
                                             {stat.value}
                                         </CardTitle>
-                                        <p className="text-sm text-primary">
+                                        <p className="text-xs md:text-sm text-primary">
                                             {stat.extra}
                                         </p>
                                     </div>
@@ -76,7 +76,7 @@ const page = () => {
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
                         <CardTitle>Salary Growth Trend</CardTitle>
-                        <CardDescription>
+                        <CardDescription className='text-xs md:text-sm'>
                             Average salary progression over the last 6 months.
                         </CardDescription>
                     </CardHeader>
@@ -88,8 +88,8 @@ const page = () => {
                 {/* Employee List */}
                 <Card className="border-0 bg-card/50 backdrop-blur-sm">
                     <CardHeader>
-                        <CardTitle className='text-lg font-semibold'>Employee List</CardTitle>
-                        <CardDescription className='text-sm text-muted-foreground'>
+                        <CardTitle>Employee List</CardTitle>
+                        <CardDescription className='text-xs md:text-sm text-muted-foreground'>
                             Click on an employee to view details or edit their information.
                         </CardDescription>
                     </CardHeader>
